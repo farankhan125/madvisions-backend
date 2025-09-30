@@ -6,3 +6,4 @@ langchain-core>=0.3.52,<0.4
 langchain-huggingface
 langchain-google-genai
 langchain-astradb
+sentence-transformers
