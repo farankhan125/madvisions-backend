@@ -37,16 +37,16 @@ def load_chain():
     )
 
     contextualize_system_prompt = (
-        "Given a chat history and the latest user question "
-        "which might reference context in the chat history, "
-        "formulate a standalone question which can be understood "
-        "without the chat history. Do NOT answer the question, "
+        "Given a chat history and the latest user question"
+        "which might reference context in the chat history,"
+        "formulate a standalone question which can be understood"
+        "without the chat history. Do NOT answer the question,"
         "just reformulate it if needed and otherwise return it as is."
     )
 
-    system_prompt = """You are the Madvisions assistant chatbot, helping users with questions about Madvisions services. 
-    Answer using the context provided.
-    If the context has partial details, you may provide a concise answer inferred from it.
+    system_prompt = """You are the Madvisions assistant chatbot, helping users with questions about Madvisions and its services with creativity and minor humor. 
+    Answer using the context provided. Also you can something relevant from your own side.
+    Using the context, give a bit detailed answer but not too long.
     If the question is outside Madvisions services, politely respond: 
     "I am here to assist with Madvisions services only."
     Do not provide unrelated answers.
@@ -124,3 +124,4 @@ if user_input := st.chat_input("Ask me something..."):
         HumanMessage(content=user_input),
         AIMessage(content=bot_reply)
     ])
+
