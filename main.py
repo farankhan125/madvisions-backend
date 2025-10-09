@@ -29,7 +29,7 @@ def load_chain():
     )
 
     vector_store = AstraDBVectorStore(
-        collection_name="Madvisions_Data",       
+        collection_name="Madvisions_Data_Second",       
         embedding=embedding_model,
         api_endpoint=os.environ["ASTRA_DB_API_ENDPOINT"],       
         token=os.environ["ASTRA_DB_APPLICATION_TOKEN"],         
@@ -44,9 +44,9 @@ def load_chain():
         "just reformulate it if needed and otherwise return it as is."
     )
 
-    system_prompt = """You are the Madvisions assistant chatbot, helping users with questions about Madvisions and its services with creativity and minor humor. 
+    system_prompt = """You are the Madvisions assistant chatbot, helping users with questions about Madvisions and its services with creativity, clarity, and confidence. 
     Answer using the context provided. Also you can something relevant from your own side.
-    Using the context, give a bit detailed answer but not too long.
+    Using the context, give a summarized answer without missing out any detail.
     Also ask follow-up question related to the conversation.
     If the question is outside Madvisions services, politely respond: 
     "I am here to assist with Madvisions services only."
@@ -125,5 +125,6 @@ if user_input := st.chat_input("Ask me something..."):
         HumanMessage(content=user_input),
         AIMessage(content=bot_reply)
     ])
+
 
 
