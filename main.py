@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 import streamlit as st
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_astradb import AstraDBVectorStore
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
@@ -19,8 +19,9 @@ load_dotenv()
 # -----------------------
 @st.cache_resource
 def load_chain():
-    embedding_model = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-mpnet-base-v2"
+    embedding_model = GoogleGenerativeAIEmbeddings(
+        model="models/gemini-embedding-001",
+        google_api_key=os.getenv("GOOGLE_API_KEY")
     )
     llm = ChatGoogleGenerativeAI(
         model="gemini-2.5-flash",
@@ -125,6 +126,7 @@ if user_input := st.chat_input("Ask me something..."):
         HumanMessage(content=user_input),
         AIMessage(content=bot_reply)
     ])
+
 
 
 
